@@ -9,12 +9,12 @@ const host = process.env.HOST;
 
 const app = express();
 
-
+//Db Connection Method
 async function connect() {
     const dbuser = process.env.DBUSER;
     const dbpass = process.env.DBPASS;
     const dbname = process.env.DBNAME;
-
+    //connection string
     const url = `mongodb+srv://${dbuser}:${dbpass}@cluster0.lttvi.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
     try {
