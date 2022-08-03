@@ -35,3 +35,11 @@ http-status-code -> holding all the status code http
 helmet -> Helmet helps you secure your Express apps by setting various HTTP headers
 
 express-async-errors -> Handel the Errors in Express
+
+//POST method -> when we need to send the data to database to Store
+
+//GET method -> when we want to fetch the data from db
+
+//PUT or PATCH -> when we need to edit the data in db
+
+//DELETE -> when we want to delete the data
