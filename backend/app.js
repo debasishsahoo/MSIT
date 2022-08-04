@@ -1,13 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const cors = require('cors')
+
+/////////////////Router/////////////
+const UserRoute = require('./routes/user.route')
+const BlogRoute = require('./routes/blog.route')
+const AdminRoute = require('./routes/admin.route')
+///////////////////////////////////
+
 dotenv.config();
-
-
 const port = process.env.PORT;
 const host = process.env.HOST;
-
 const app = express();
+
+
+//-------------------Use------------------------//
+app.use(cors())
+app.use(express.json())
+app.use('/user', UserRoute)
+app.use('/blog', BlogRoute)
+app.use('/admin', AdminRoute)
+//-------------------x-----------------------//
 
 
 

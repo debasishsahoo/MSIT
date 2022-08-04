@@ -1,14 +1,14 @@
 const AdminModel = require('../model/blog.model');
 
 const AdminController = {
-  AllUserList: async () => { },
-  SingleUser: async () => { },
-  BlockUser: async () => { },
-  AllBlogList: async () => { },
-  SingleBlogView: async () => { },
-  SingleUserBlog: async () => { },
-  BlockBlog: async () => { },
-  Signin: async () => { },
+  AllUserList: async (req, res, next) => { res.send('Working') },
+  SingleUser: async (req, res, next) => { res.send('Working') },
+  BlockUser: async (req, res, next) => { res.send('Working') },
+  AllBlogList: async (req, res, next) => { res.send('Working') },
+  SingleBlogView: async (req, res, next) => { res.send('Working') },
+  SingleUserBlog: async (req, res, next) => { res.send('Working') },
+  BlockUserBlog: async (req, res, next) => { res.send('Working') },
+  Signin: async (req, res, next) => { res.send('Working') },
 };
 
 module.exports = AdminController;
