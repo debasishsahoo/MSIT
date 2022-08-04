@@ -8,6 +8,7 @@ let UserSchema = mongoose.Schema(
     mobile: { type: Number },
     password: { type: String, required: true },
     isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
   },
   { timestamp: true }
 );

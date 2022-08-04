@@ -9,6 +9,7 @@ let BolgSchema = mongoose.Schema(
     autherid: { type: String, required: true },
     auther: { type: String, required: true },
     isActive: { type: Boolean, default: true },
+    isDeleted: { type: Boolean, default: false },
   },
   { timestamp: true }
 );
