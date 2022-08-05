@@ -7,7 +7,7 @@ const TimeOut = parseInt(`${process.env.EXPIRESIN}`)
 const JwtHelper = {
     LoginToken: (tokenobj) => {
         return jwt.sign(
-            tokenobj, secret_key, { expiresin: TimeOut }
+            tokenobj, secret_key
         )
     }
 }

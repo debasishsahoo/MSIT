@@ -9,6 +9,7 @@ const UserHelper = {
     ValidUser: async (Userobj) => {
         return await UserModel.findOne(Userobj)
     }
+    
 
 }
 module.exports = UserHelper

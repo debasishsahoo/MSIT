@@ -1,7 +1,8 @@
 const UserModel = require('../model/user.model');
 const UserHelper = require('../util/User.util')
 const HashHelper = require('../util/Hash.Util')
-const JwtHelper = require('../util/Jwt.util')
+const JwtHelper = require('../util/Jwt.util');
+const userModel = require('../model/user.model');
 
 const UserController = {
   signup: async (req, res, next) => {
@@ -80,9 +81,76 @@ const UserController = {
 
 
   },
-  profileEdit: async (req, res, next) => { res.send('Working') },
-  profileDelete: async (req, res, next) => { res.send('Working') },
-  profileView: async (req, res, next) => { res.send('Working') },
+  profileEdit: async (req, res, next) => {
+    const { id } = req.params
+    const { name, mobile } = req.body
+
+    try {
+      if (!UserHelper.ValidId(id) && !UserHelper.ValidUser({ _id: id })) {
+        return res.status(404).json({
+          message: 'User Not Found'
+        })
+      }
+      const UpdateProfile = {
+        name, mobile, _id: id
+      }
+      await userModel.findByIdAndUpdate(id, UpdateProfile, { new: true });
+      res.status(200).json({
+        message: `User with id:${id} is Updated`,
+        user: UpdateProfile
+      })
+    }
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      })
+    }
+
+
+  },
+  profileDelete: async (req, res, next) => {
+    const { id } = req.params
+    try {
+      if (!UserHelper.ValidId(id) && !UserHelper.ValidUser({ _id: id })) {
+        return res.status(404).json({
+          message: 'User Not Found'
+        })
+      }
+
+      await userModel.findByIdAndDelete(id);
+      res.status(202).json({
+        message: `User with id:${id} is Deleted`,
+      })
+    }
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      })
+    }
+
+  },
+  profileView: async (req, res, next) => {
+    const { id } = req.params
+    try {
+      if (!UserHelper.ValidId(id) && !UserHelper.ValidUser({ _id: id })) {
+        return res.status(404).json({
+          message: 'User Not Found'
+        })
+      }
+
+      const SingleUser = await userModel.findById(id);
+      res.status(202).json({
+        message: `User with id:${id} is Found`,
+        user: SingleUser
+      })
+    }
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      })
+    }
+
+  },
 };
 
 module.exports = UserController;
