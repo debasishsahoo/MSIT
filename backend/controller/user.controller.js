@@ -37,10 +37,28 @@ const UserController = {
 
 
   },
-  signin: async (req, res, next) => { 
+  signin: async (req, res, next) => {
+    const { email, password } = req.body;
+    const olduser = await UserHelper.ValidUser({ email });
+    if (!olduser) {
+      return res.status(400).json({
+        message: "Email Dose not Exist",
+      });
+    }
+    const iscorrectPassword = await HashHelper.isPasswordCorrect(password, olduser.password)
+    if (!iscorrectPassword) {
+      return res.status(400).json({
+        message: "Invalid Password"
+      });
+    }
 
-    
-   },
+    res.status(200).json({
+      message: "Sucessfully Login",
+      user: olduser,
+    })
+
+
+  },
   profileEdit: async (req, res, next) => { res.send('Working') },
   profileDelete: async (req, res, next) => { res.send('Working') },
   profileView: async (req, res, next) => { res.send('Working') },
