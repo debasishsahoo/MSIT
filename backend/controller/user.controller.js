@@ -1,6 +1,7 @@
 const UserModel = require('../model/user.model');
 const UserHelper = require('../util/User.util')
 const HashHelper = require('../util/Hash.Util')
+const JwtHelper = require('../util/Jwt.util')
 
 const UserController = {
   signup: async (req, res, next) => {
@@ -20,13 +21,13 @@ const UserController = {
         name, email, mobile, password: HasedPassword
       })
       res.status(201).json({
-        msg: "User is Created! Congrats",
+        message: "User is Created! Congrats",
         user: sendData
       });
     }
     catch (error) {
       res.status(404).json({
-        msg: error.message,
+        message: error.message,
       })
     }
 
@@ -39,23 +40,43 @@ const UserController = {
   },
   signin: async (req, res, next) => {
     const { email, password } = req.body;
-    const olduser = await UserHelper.ValidUser({ email });
-    if (!olduser) {
-      return res.status(400).json({
-        message: "Email Dose not Exist",
+
+    try {
+      const olduser = await UserHelper.ValidUser({ email });
+      if (!olduser) {
+        return res.status(400).json({
+          message: "Email Dose not Exist",
+        });
+      }
+      const iscorrectPassword = await HashHelper.isPasswordCorrect(password, olduser.password)
+      if (!iscorrectPassword) {
+        return res.status(400).json({
+          message: "Invalid Password"
+        });
+      }
+      const token = JwtHelper.LoginToken({
+        email: olduser.email,
+        id: olduser.id
       });
+      res.status(200).json({
+        message: "Sucessfully Login",
+        user: olduser,
+        token: token
+      })
     }
-    const iscorrectPassword = await HashHelper.isPasswordCorrect(password, olduser.password)
-    if (!iscorrectPassword) {
-      return res.status(400).json({
-        message: "Invalid Password"
-      });
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      })
     }
 
-    res.status(200).json({
-      message: "Sucessfully Login",
-      user: olduser,
-    })
+
+
+
+
+
+
+
 
 
   },
