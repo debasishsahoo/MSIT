@@ -10,6 +10,7 @@ let BolgSchema = mongoose.Schema(
     auther: { type: String, required: true },
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
+    createdAt: { type: Date, default: Date.now }
   },
   { timestamp: true }
 );
