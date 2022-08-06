@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let UserSchema = mongoose.Schema(
+let AdminSchema = mongoose.Schema(
   {
     email: { type: String, required: true },
     password: { type: String, required: true },
@@ -8,4 +8,4 @@ let UserSchema = mongoose.Schema(
   { timestamp: true }
 );
 
-module.exports = mongoose.model('UserTable', UserSchema);
+module.exports = mongoose.model('AdminTable', AdminSchema);

@@ -34,7 +34,7 @@ async function connect() {
     const dbname = process.env.DBNAME;
     //connection string
     const url = `mongodb+srv://${dbuser}:${dbpass}@cluster0.lttvi.mongodb.net/${dbname}?retryWrites=true&w=majority`;
-
+//mongodb+srv://sourav123:7e3tcym41yYCJ28N@cluster0.lttvi.mongodb.net/debtest?retryWrites=true&w=majority
     try {
         await mongoose.connect(url);
         console.log('DB Connection Done.......')

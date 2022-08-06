@@ -2,7 +2,6 @@ const UserModel = require('../model/user.model');
 const UserHelper = require('../util/User.util')
 const HashHelper = require('../util/Hash.Util')
 const JwtHelper = require('../util/Jwt.util');
-const userModel = require('../model/user.model');
 
 const UserController = {
   signup: async (req, res, next) => {
@@ -94,7 +93,7 @@ const UserController = {
       const UpdateProfile = {
         name, mobile, _id: id
       }
-      await userModel.findByIdAndUpdate(id, UpdateProfile, { new: true });
+      await UserModel.findByIdAndUpdate(id, UpdateProfile, { new: true });
       res.status(200).json({
         message: `User with id:${id} is Updated`,
         user: UpdateProfile
@@ -117,7 +116,7 @@ const UserController = {
         })
       }
 
-      await userModel.findByIdAndDelete(id);
+      await UserModel.findByIdAndDelete(id);
       res.status(202).json({
         message: `User with id:${id} is Deleted`,
       })
@@ -138,7 +137,7 @@ const UserController = {
         })
       }
 
-      const SingleUser = await userModel.findById(id);
+      const SingleUser = await UserModel.findById(id);
       res.status(202).json({
         message: `User with id:${id} is Found`,
         user: SingleUser
