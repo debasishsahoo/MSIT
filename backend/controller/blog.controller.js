@@ -83,13 +83,33 @@ const BlogController = {
     }
   },
   singleUserBlog: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      if (!UserHelper.ValidId(id) && !UserHelper.ValidUser({ _id: id })) {
+        return res.status(404).json({
+          message: `No Blog with this id :${id} found`,
+        })
+      }
+      const SingleUserBlog = await BlogModel.find({ autherid: id })
+      res.status(200).json({
+        message: `Id:${id},   Number of Post:${SingleUserBlog.length}`,
+        Blog: SingleUserBlog
+      })
+    }
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      });
+    }
+
+
 
   },
   allBlogList: async (req, res, next) => {
     try {
       const AllBlog = await BlogModel.find();
       res.status(202).json({
-        message: `All Blog List`,
+        message: `Number of Post:${AllBlog.length}`,
         Blog: AllBlog,
       })
     }
