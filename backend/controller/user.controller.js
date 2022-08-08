@@ -30,13 +30,7 @@ const UserController = {
         message: error.message,
       })
     }
-
-
-
-
-
-
-
+    
   },
   signin: async (req, res, next) => {
     const { email, password } = req.body;

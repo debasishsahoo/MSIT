@@ -3,6 +3,7 @@ const BlogModel = require('../model/blog.model')
 const UserHelper = require('../util/User.util');
 const HashHelper = require('../util/Hash.Util')
 const JwtHelper = require('../util/Jwt.util')
+const AdminModel = require('../model/admin.model')
 
 const AdminController = {
   AllUserList: async (req, res, next) => {
@@ -148,25 +149,26 @@ const AdminController = {
   Signin: async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const olduser = await UserHelper.ValidAdmin({ email });
-      if (!olduser) {
+      const oldadmin = await UserHelper.ValidAdmin({ email });
+      if (!oldadmin) {
         return res.status(400).json({
           message: "Email Dose not Exist",
         });
       }
-      const iscorrectPassword = await HashHelper.isPasswordCorrect(password, olduser.password)
+      const iscorrectPassword = await HashHelper.isPasswordCorrect(password, oldadmin.password)
       if (!iscorrectPassword) {
         return res.status(400).json({
           message: "Invalid Password"
         });
       }
       const token = JwtHelper.LoginToken({
-        email: olduser.email,
-        id: olduser.id
+        email: oldadmin.email,
+        id: oldadmin.id,
+        isAdmin: true
       });
       res.status(200).json({
         message: "Sucessfully Login",
-        user: olduser,
+        user: oldadmin,
         token: token
       })
     }
@@ -176,6 +178,33 @@ const AdminController = {
       })
     }
   },
+  Signup: async (req, res, next) => {
+    const { name, email, password } = req.body;
+
+    try {
+      const oldadmin = await UserHelper.ValidAdmin({ email });
+      if (oldadmin) {
+        return res.status(400).json({
+          message: "Email alrady Exist",
+        });
+      }
+
+      const HasedPassword = await HashHelper.HasedPassword(password);
+
+      const sendData = await AdminModel.create({
+        name, email, password: HasedPassword
+      })
+      res.status(201).json({
+        message: "Admin is Created! Congrats",
+        user: sendData
+      });
+    }
+    catch (error) {
+      res.status(404).json({
+        message: error.message,
+      })
+    }
+  }
 };
 
 module.exports = AdminController;
