@@ -14,11 +14,49 @@ npm install -g @angular/cli // for global install
 ng g component banner
 ng g component header
 ng g component footer
-ng g component articles
-ng g component accounts
 ng g component pagenotfound
-ng g component staticpage
+
+We dot tomorow
+ng g component blog/components/view-blog
+ng g component blog/components/blog-list
+ng g component blog/components/create-Blog
+ng g component blog/components/edit-blog
+ng g component blog/components/user-blog-list
+ng g component blog/components/latest-blog-list
+ng g component blog/components/featured-blog-list
+
+model
+routing
+service
+
+ng g component accounts/component/login
+ng g component accounts/component/registration
+ng g component accounts/component/profile
+ng g component accounts/component/edit-profile
+
+model
+routing
+service
+auth-gurd
+auth-intercepter
+
+ng g component staticpages/component/aboutus
+ng g component staticpages/component/contactus
+
+routing
+
 ng g component blogadmin
+ng g component blogadmin/component/login
+ng g component blogadmin/component/user-list
+ng g component blogadmin/component/user-details
+ng g component blogadmin/component/blog-list
+ng g component blogadmin/component/blog-details
+ng g component blogadmin/component/user-blog-list
+model
+routing
+service
+auth-gurd
+auth-intercepter
 
 https://getbootstrap.com/docs/4.0/getting-started/introduction/
 
