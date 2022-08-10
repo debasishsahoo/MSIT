@@ -19,7 +19,7 @@ ng g component footer
 
 ng g component pagenotfound
 
-We do it today
+# We do it today
 ng g component blog/components/view-blog
 
 ng g component blog/components/blog-list
