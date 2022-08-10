@@ -20,6 +20,7 @@ ng g component footer
 ng g component pagenotfound
 
 # We do it today
+
 ng g component blog/components/view-blog
 
 ng g component blog/components/blog-list
@@ -56,7 +57,7 @@ ng g component staticpages/component/contactus
 
 routing
 
-ng g component blogadmin
+# BLOG ADMIN
 
 ng g component blogadmin/component/login
 
@@ -76,13 +77,25 @@ service &
 auth-gurd &
 auth-intercepter &
 
+# MODULES AND INTERNAL ROUTING
+
+ng g module accounts --routing
+
+ng g module blog --routing
+
+ng g module blogadmin --routing
+
+ng g module staticpages --routing
+
+# EXTERNAL FILES AND CDNS
+
 https://getbootstrap.com/docs/4.0/getting-started/introduction/
 
-head
+# IN THE HEAD SECTIONS
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-after body end
+# AFTER THE BODY SECTION
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
