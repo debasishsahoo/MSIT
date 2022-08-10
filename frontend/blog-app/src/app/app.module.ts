@@ -20,7 +20,6 @@ import { ProfileComponent } from './accounts/component/profile/profile.component
 import { EditProfileComponent } from './accounts/component/edit-profile/edit-profile.component';
 import { AboutusComponent } from './staticpages/component/aboutus/aboutus.component';
 import { ContactusComponent } from './staticpages/component/contactus/contactus.component';
-import { BlogadminComponent } from './blogadmin/blogadmin.component';
 import { UserListComponent } from './blogadmin/component/user-list/user-list.component';
 import { UserDetailsComponent } from './blogadmin/component/user-details/user-details.component';
 import { BlogDetailsComponent } from './blogadmin/component/blog-details/blog-details.component';
@@ -44,7 +43,6 @@ import { BlogDetailsComponent } from './blogadmin/component/blog-details/blog-de
     EditProfileComponent,
     AboutusComponent,
     ContactusComponent,
-    BlogadminComponent,
     UserListComponent,
     UserDetailsComponent,
     BlogDetailsComponent,
